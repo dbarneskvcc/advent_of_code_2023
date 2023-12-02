@@ -177,7 +177,7 @@ class UserInterface:
         print()
         print("1. Day One")
         print("2. Day Two")
-        # print("3. Day Three")
+        print("3. Day Three")
         # print("4. Day Four")
         # print("5. Day Five")
         # print("6. Day Six")
