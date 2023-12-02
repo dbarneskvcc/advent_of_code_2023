@@ -60,10 +60,24 @@ class UserInterface:
         """Display message"""
         print(message)
 
+    def print_info(self, message):
+        """Display info message."""
+        print()
+        Style.CYAN
+        print(message)
+        Style.RESET
+
     def print_success(self, message):
         """Display success message."""
         print()
         Style.GREEN
+        print(message)
+        Style.RESET
+
+    def print_warning(self, message):
+        """Display warning message."""
+        print()
+        Style.YELLOW
         print(message)
         Style.RESET
 
