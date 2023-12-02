@@ -69,3 +69,50 @@ class Day2:
 
     def solve_problem_2(self):
         """Solve problem 2"""
+        total = 0
+
+        lines = self.file_reader.read_lines("day2/input.txt")
+        for line in lines:
+            # print(line)
+            parts = line.split(": ")
+            game_title = parts[0]
+            game_number = int(game_title.split(" ")[-1])
+            # print(game_number)
+            games_string = parts[1]
+            # print(games_string)
+
+            game_sets = games_string.split("; ")
+            # print(game_sets)
+
+            max_for_game = {
+                "red": 0,
+                "green": 0,
+                "blue": 0,
+            }
+
+            for color_info in game_sets:
+                color_parts = color_info.split(", ")
+                # game_set_stats = {}
+                for color_part in color_parts:
+                    game_set_parts = color_part.split(" ")
+                    # game_set_stats[game_parts[1]] = game_parts[0]
+
+                    # print(game_set_parts)
+                    quantity = int(game_set_parts[0])
+                    color = game_set_parts[1]
+
+                    if max_for_game[color] < quantity:
+                        max_for_game[color] = quantity
+
+            self.ui.print_info(f"Game {game_number} max red = {max_for_game['red']}")
+            self.ui.print_info(
+                f"Game {game_number} max green = {max_for_game['green']}"
+            )
+            self.ui.print_info(f"Game {game_number} max blue = {max_for_game['blue']}")
+
+            power = max_for_game["red"] * max_for_game["green"] * max_for_game["blue"]
+            self.ui.print_info(f"Game {game_number} power is: {power}")
+
+            total += power
+
+        self.ui.print_success(f"The total is: {total}")
