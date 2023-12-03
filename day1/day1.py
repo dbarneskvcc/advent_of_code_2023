@@ -82,7 +82,7 @@ class Day1:
             # Init end value to None
             end = None
             # Loop through all the key values in the number map.
-            for text in number_map.keys():
+            for text in number_map:
                 # Get the index of the key (text number or digit)
                 index = line.find(text)
                 # If the index is -1, the number was not found
@@ -100,7 +100,7 @@ class Day1:
                     start = text
 
             # Loop through all the key values in the number map.
-            for text in number_map.keys():
+            for text in number_map:
                 # Get the index of the key (text number or digit)
                 index = line.rfind(text)
                 # If the index is -1, the number was not found
