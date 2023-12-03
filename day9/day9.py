@@ -4,9 +4,10 @@
 class Day9:
     """Class for solving day 3 problem"""
 
-    def __init__(self, ui):
+    def __init__(self, ui, file_reader):
         """Constructor"""
         self.ui = ui
+        self.file_reader = file_reader
 
     def run(self):
         """Run method"""
