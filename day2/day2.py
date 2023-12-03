@@ -60,10 +60,10 @@ class Day2:
                 for color_part in color_parts:
                     # Split into color and quantity
                     game_set_parts = color_part.split(" ")
-                    quantity = game_set_parts[0]
+                    quantity = int(game_set_parts[0])
                     color = game_set_parts[1]
                     # If the quantity is greater than the max allowable value for that color.
-                    if int(quantity) > max_colors[color]:
+                    if quantity > max_colors[color]:
                         # Print error to screen
                         self.ui.print_error(
                             f"Game {game_number} is over with {color} = {quantity}"
@@ -116,7 +116,7 @@ class Day2:
                 for color_part in color_parts:
                     # Split into color and quantity
                     game_set_parts = color_part.split(" ")
-                    quantity = game_set_parts[0]
+                    quantity = int(game_set_parts[0])
                     color = game_set_parts[1]
 
                     # If the current game set's color's quantity is more than
