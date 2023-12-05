@@ -62,28 +62,24 @@ class UserInterface:
 
     def print_info(self, message):
         """Display info message."""
-        print()
         Style.CYAN
         print(message)
         Style.RESET
 
     def print_success(self, message):
         """Display success message."""
-        print()
         Style.GREEN
         print(message)
         Style.RESET
 
     def print_warning(self, message):
         """Display warning message."""
-        print()
         Style.YELLOW
         print(message)
         Style.RESET
 
     def print_error(self, message):
         """Display error message."""
-        print()
         Style.RED
         print(message)
         Style.RESET
@@ -178,7 +174,7 @@ class UserInterface:
         print("1. Day One")
         print("2. Day Two")
         print("3. Day Three")
-        # print("4. Day Four")
+        print("4. Day Four")
         # print("5. Day Five")
         # print("6. Day Six")
         # print("7. Day Seven")
