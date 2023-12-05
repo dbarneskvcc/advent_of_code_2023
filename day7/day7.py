@@ -2,7 +2,7 @@
 
 
 class Day7:
-    """Class for solving day 3 problem"""
+    """Class for solving day 7 problem"""
 
     def __init__(self, ui, file_reader):
         """Constructor"""
