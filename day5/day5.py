@@ -1,4 +1,5 @@
 """Day 5 module"""
+from tqdm import tqdm
 
 
 class Day5:
@@ -75,7 +76,7 @@ class Day5:
                         entry["dest_start"],
                         entry["length"],
                     )
-                    print(answer)
+
                     if answer is not None:
                         next_value = answer
                         break
@@ -99,6 +100,87 @@ class Day5:
 
     def solve_problem_2(self):
         """Solve problem 2"""
+        maps = {}
+        seeds = []
+        # Get the lines of input
+        lines = self.file_reader.read_lines("day5/input.txt")
+        dict_name = "START"
+        # For each line start processing line
+        for line in lines:
+            if line == "":
+                continue
+            elif "seeds:" in line:
+                seed_data = line.split("seeds: ")[1]
+                seeds = seed_data.split(" ")
+                seeds = [int(seed) for seed in seeds]
+                self.ui.print_warning("Seeds:")
+                self.ui.print_info(seeds)
+            elif " map:" in line:
+                dict_name = line.split(" map:")[0]
+                self.ui.print_warning(dict_name)
+                maps[dict_name] = []
+            else:
+                data_parts = line.split(" ")
+                self.ui.print_info(data_parts)
+                destination_range_start = int(data_parts[0])
+                source_range_start = int(data_parts[1])
+                range_length = int(data_parts[2])
+
+                maps[dict_name].append(
+                    {
+                        "source_start": source_range_start,
+                        "dest_start": destination_range_start,
+                        "length": range_length,
+                    }
+                )
+
+        smallest = 9999999999999999
+
+        # Convert seeds to pairs of seeds
+        for i in range(0, len(seeds), 2):
+            start = seeds[i]
+            length = seeds[i + 1]
+            end = start + length
+            self.ui.print_info(f"Working on iteration: {i}")
+
+            if start < smallest_start:
+                smallest_start = start
+
+            for seed in tqdm(range(start, end)):
+                # self.ui.print_error(f"Working on seed {seed}")
+                start_value = seed
+                next_value = None
+                for name, mapping in maps.items():
+                    # self.ui.print_warning(f"Working on {name} conversion.")
+                    next_value = None
+                    for entry in mapping:
+                        answer = self._get_next_value(
+                            start_value,
+                            entry["source_start"],
+                            entry["dest_start"],
+                            entry["length"],
+                        )
+
+                        if answer is not None:
+                            next_value = answer
+                            break
+
+                    if next_value is None:
+                        next_value = start_value
+
+                    # self.ui.print_info(f"Found conversion: {start_value} => {next_value}")
+
+                    start_value = next_value
+
+                end_value = next_value
+
+                if end_value < smallest:
+                    smallest = end_value
+                    self.ui.print_info(f"New lowest value is: {smallest}")
+
+        self.ui.print_success(f"The lowest location number is: {smallest}")
+
+        raise Exception()
 
     def _get_next_value(self, source_val, source_start, dest_start, length):
         """Get the next value based on the dict info"""
