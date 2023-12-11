@@ -67,3 +67,30 @@ class Day6:
 
     def solve_problem_2(self):
         """Solve problem 2"""
+
+        # Get the lines of input
+        lines = self.file_reader.read_lines("day6/input.txt")
+        # For each line start processing line
+        race_time_line = lines[0]
+        race_distance_line = lines[1]
+
+        time = race_time_line.split(":")[1]
+        time = re.sub(" +", "", time)
+        time = int(time)
+        self.ui.print_info(f"The total time is: {time}")
+
+        distance = race_distance_line.split(":")[1]
+        distance = re.sub(" +", "", distance)
+        distance = int(distance)
+        self.ui.print_info(f"The total distance is: {distance}")
+
+        ways_to_win = 0
+
+        for i in range(time):
+            answer = i * (time - i)
+            if answer > distance:
+                ways_to_win += 1
+
+        total = ways_to_win
+
+        self.ui.print_success(f"The total ways to win is: {total}")
